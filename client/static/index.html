@@ -3,45 +3,45 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
+    <title>zcubbs / Oauth Showcase</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 <body>
 <section class="hero is-primary">
     <div class="hero-body">
         <p class="title">
-            Oauth Showcase
+            Oauth Client
         </p>
         <p class="subtitle">
-            @zcubbs
+            Client
         </p>
     </div>
 </section>
 <section class="section">
     <div class="container is-max-desktop">
         {{if .Success}}
-            <p class="title is-2 is-spaced">Success</p>
-            <nav class="panel">
-                <p class="panel-heading">
-                    Access Token
-                </p>
-                <div class="container p-4">
-                    <p>{{ .AccessToken }}</p>
-                </div>
-            </nav>
-            <nav class="panel">
-                <p class="panel-heading">
-                    Refresh Token
-                </p>
-                <div class="container p-4">
-                    <p>{{ .RefreshToken }}</p>
-                </div>
-            </nav>
+        <p class="title is-2 is-spaced">Success</p>
+        <nav class="panel">
+            <p class="panel-heading">
+                Access Token
+            </p>
+            <div class="container p-4">
+                <p>{{ .AccessToken }}</p>
+            </div>
+        </nav>
+        <nav class="panel">
+            <p class="panel-heading">
+                Refresh Token
+            </p>
+            <div class="container p-4">
+                <p>{{ .RefreshToken }}</p>
+            </div>
+        </nav>
 
-            {{range $_, $v := .Endpoints}}
-                <hr>
-                <p>{{ $v }}</p>
-            {{end}}
+        {{range $_, $v := .Endpoints}}
+        <hr>
+        <p>{{ $v }}</p>
+        {{end}}
 
         {{else}}
         <nav class="panel">
@@ -52,7 +52,7 @@
                 <form method="POST">
                     <div class="field">
                         <p class="control has-icons-left has-icons-right">
-                            <input class="input" type="email" placeholder="Email" name="email">
+                            <input class="input" type="text" placeholder="Username" name="username">
                             <span class="icon is-small is-left">
                                 <ion-icon name="at-outline"></ion-icon>
                             </span>

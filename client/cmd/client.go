@@ -1,38 +1,36 @@
-package main
+package cmd
 
 import (
 	"fmt"
+	"github.com/zcubbs/oauth-showcase/client/configs"
+	"github.com/zcubbs/oauth-showcase/client/internal"
 	"html/template"
 	"log"
 	"net/http"
-	"oauth-showcase/configs"
-	"oauth-showcase/internal/oauth"
 )
 
 type UserDetails struct {
-	Email    string
+	Username string
 	Password string
-}
-
-func init() {
-	configs.Bootstrap()
 }
 
 var (
 	tmpl *template.Template
 )
 
-func main() {
+func Start() {
+	log.Println("Starting client...")
 	configs.PrintConfig()
-	tmpl = template.Must(template.ParseFiles("index.html"))
+	// load templates
+	tmpl = template.Must(template.ParseFiles("static/index.html"))
 
-	http.HandleFunc("/", loginHandler)
+	http.HandleFunc("/", clientLoginHandler)
 
 	log.Println(fmt.Sprintf("Client is running at %d port", configs.Cfg.Port))
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", configs.Cfg.Port), nil))
 }
 
-func loginHandler(w http.ResponseWriter, r *http.Request) {
+func clientLoginHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		err := tmpl.Execute(w, nil)
 		if err != nil {
@@ -43,12 +41,12 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	details := UserDetails{
-		Email:    r.FormValue("email"),
+		Username: r.FormValue("username"),
 		Password: r.FormValue("password"),
 	}
 
 	// fetch token for user
-	token, err := oauth.PerformPasswordGrant(details.Email, details.Password)
+	token, err := internal.PerformPasswordGrant(details.Username, details.Password)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -58,7 +56,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 
 	// call secure endpoints
 	for _, endpoint := range configs.Cfg.SecureEndpoints {
-		response, err := oauth.CallSecureEndpoint(
+		response, err := internal.CallSecureEndpoint(
 			fmt.Sprintf("%s%s", configs.Cfg.AuthUrl, endpoint),
 			token,
 		)

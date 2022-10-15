@@ -1,0 +1,11 @@
+auth:
+  url: http://localhost:9000
+  username: test
+  password: test
+  clientId: TEST_CLIENT_ID
+  clientSecret: TEST_CLIENT_SECRET
+  redirectUrl: http://localhost:8000
+  scopes:
+    - read
+secureEndpoints:
+  - /test

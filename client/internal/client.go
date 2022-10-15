@@ -1,15 +1,15 @@
-package oauth
+package internal
 
 import (
 	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/zcubbs/oauth-showcase/client/configs"
 	"golang.org/x/oauth2"
 	"io"
 	"log"
 	"net/http"
-	"oauth-showcase/configs"
 )
 
 func PerformPasswordGrant(username, password string) (*oauth2.Token, error) {
