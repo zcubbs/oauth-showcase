@@ -48,7 +48,17 @@ func clientLoginHandler(w http.ResponseWriter, r *http.Request) {
 	// fetch token for user
 	token, err := internal.PerformPasswordGrant(details.Username, details.Password)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		err := tmpl.Execute(w, struct {
+			Success  bool
+			ErrorMsg string
+		}{
+			false,
+			"failed to authenticate with server",
+		})
+		if err != nil {
+			log.Println("error executing template", err)
+			return
+		}
 		return
 	}
 
@@ -78,14 +88,12 @@ func clientLoginHandler(w http.ResponseWriter, r *http.Request) {
 	err = tmpl.Execute(w, struct {
 		Success         bool
 		AccessToken     string
-		RefreshToken    string
 		Endpoints       []map[string]string
 		DefaultUsername string
 		DefaultPassword string
 	}{
 		true,
-		token.AccessToken,
-		token.RefreshToken,
+		internal.GetJSONString(token.AccessToken),
 		endpoints,
 		configs.Cfg.Username,
 		configs.Cfg.Password,

@@ -1,29 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>zcubbs / Oauth Showcase</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
-
 <body>
-<div class="container">
-    <h1>Login In</h1>
-    <form action="/login" method="POST">
-        <div class="form-group">
-            <label for="username">User Name</label>
-            <input type="text" class="form-control" name="username" required placeholder="Please enter your user name">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" placeholder="Please enter your password">
-        </div>
-        <button type="submit" class="btn btn-success">Login</button>
-    </form>
-</div>
+<section class="hero is-link">
+    <div class="hero-body">
+        <p class="title">
+            Oauth Server
+        </p>
+        <p class="subtitle">
+            v1.0.0
+        </p>
+    </div>
+</section>
+<section class="section">
+    <div class="container is-max-desktop">
+        <nav class="panel">
+            <p class="panel-heading">
+                Login
+            </p>
+            <div class="container p-4">
+                <form method="POST" action="/login">
+                    <div class="field">
+                        <label class="label">Username</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input" type="text" placeholder="Username" name="username">
+                            <span class="icon is-small is-left">
+                            <ion-icon name="at-outline"></ion-icon>
+                        </span>
+                            <span class="icon is-small is-right">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input" type="password" placeholder="Password" name="password">
+                            <span class="icon is-small is-left">
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="button is-success" type="submit" value="Login">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </nav>
+    </div>
+</section>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

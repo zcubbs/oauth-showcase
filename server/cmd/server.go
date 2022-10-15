@@ -203,7 +203,7 @@ func serverLoginHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusFound)
 		return
 	}
-	outputHTML(w, r, "static/server/login.html")
+	outputHTML(w, r, "static/login.html")
 }
 
 func authHandler(w http.ResponseWriter, r *http.Request) {
@@ -222,7 +222,7 @@ func authHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	outputHTML(w, r, "static/server/auth.html")
+	outputHTML(w, r, "static/auth.html")
 }
 
 func outputHTML(w http.ResponseWriter, req *http.Request, filename string) {
