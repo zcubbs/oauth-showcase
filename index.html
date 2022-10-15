@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+<section class="hero is-primary">
+    <div class="hero-body">
+        <p class="title">
+            Oauth Showcase
+        </p>
+        <p class="subtitle">
+            @zcubbs
+        </p>
+    </div>
+</section>
+<section class="section">
+    <div class="container is-max-desktop">
+        {{if .Success}}
+            <p class="title is-2 is-spaced">Success</p>
+            <nav class="panel">
+                <p class="panel-heading">
+                    Access Token
+                </p>
+                <div class="container p-4">
+                    <p>{{ .AccessToken }}</p>
+                </div>
+            </nav>
+            <nav class="panel">
+                <p class="panel-heading">
+                    Refresh Token
+                </p>
+                <div class="container p-4">
+                    <p>{{ .RefreshToken }}</p>
+                </div>
+            </nav>
+
+            {{range $_, $v := .Endpoints}}
+                <hr>
+                <p>{{ $v }}</p>
+            {{end}}
+
+        {{else}}
+        <nav class="panel">
+            <p class="panel-heading">
+                Login
+            </p>
+            <div class="container p-4">
+                <form method="POST">
+                    <div class="field">
+                        <p class="control has-icons-left has-icons-right">
+                            <input class="input" type="email" placeholder="Email" name="email">
+                            <span class="icon is-small is-left">
+                                <ion-icon name="at-outline"></ion-icon>
+                            </span>
+                            <span class="icon is-small is-right">
+                                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="field">
+                        <p class="control has-icons-left">
+                            <input class="input" type="password" placeholder="Password" name="password">
+                            <span class="icon is-small is-left">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="field">
+                        <p class="control">
+                            <input class="button is-success" type="submit" value="Login">
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </nav>
+        {{end}}
+    </div>
+</section>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
+
