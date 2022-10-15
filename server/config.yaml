@@ -1,0 +1,25 @@
+debug: true
+clients:
+  - id: TEST_CLIENT_ID
+    secret: TEST_CLIENT_SECRET
+    domain: http://localhost:8080
+    redirectUris:
+      - http://localhost:8000
+    scopes:
+      - read
+      - write
+    authorizedGrantTypes:
+      - authorization_code
+      - refresh_token
+      - password
+      - client_credentials
+      - implicit
+    accessTokenValiditySeconds: 3600
+    refreshTokenValiditySeconds: 3600
+    autoApproveScopes:
+      - read
+      - write
+      - trust
+    users:
+      - username: test
+        password: test
