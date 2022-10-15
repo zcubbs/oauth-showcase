@@ -10,6 +10,7 @@ func init() {
 }
 
 func main() {
+	// Print config
 	configs.PrintConfig()
 
 	// Start server
