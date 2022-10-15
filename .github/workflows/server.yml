@@ -1,23 +1,23 @@
-name: build-client
+name: build-server
 
 defaults:
   run:
     shell: bash
-    working-directory: client
+    working-directory: server
 on:
   push:
     branches: [ main ]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
     paths:
-      - "client/**"
+      - "server/**"
   pull_request:
     branches: [ main ]
 
 env:
-  NAME: client
+  NAME: server
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}-client
+  IMAGE_NAME: ${{ github.repository }}-server
 
 jobs:  
   build:
