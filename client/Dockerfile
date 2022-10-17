@@ -20,6 +20,7 @@ FROM alpine:3.14
 
 RUN mkdir cmd
 COPY --from=builder ["/build/app", "/cmd"]
+COPY --from=builder ["/static", "/static"]
 
 # Export necessary port.
 WORKDIR /cmd
